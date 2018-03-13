@@ -1,29 +1,76 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Hellouser extends React.Component {
+class FriendsContainer extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: 'Sunface'
+      name: "Sunface",
+      friends: ['Jakir Hussain', 'Pradeep R', 'Dipak Chandran']
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNewFriends = this.handleNewFriends.bind(this);
   }
- handleChange(e) {
-   this.setState({
-     name: e.target.value
-   });
- }
+  handleNewFriends (e) {
+    this.setState((state) => ({
+      friends: state.friends.concat([e])
+    }))
+  }
+
   render() {
     return (
       <div>
-          Hello {this.state.name}! <br/>
-          Change Name: <input type='text' value={this.state.name} onChange={this.handleChange} />
-
+        <h2> Name: {this.state.name} </h2>
+        <AddFriend addNew={this.handleNewFriends}/>
+        <FriendsList friends={this.state.friends} />
       </div>
     )
   }
 }
 
-ReactDOM.render(<Hellouser />, document.getElementById('root'));
+class FriendsList extends React.Component {
+  render() {
+    return (
+      <div>
+        <h3> Friends </h3>
+        <ul>
+          {this.props.friends.map((friend) => <li key={friend.toString()}>{friend}</li>)}
+        </ul>
+      </div>
+    )
+  }
+}
+
+class AddFriend extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      newFriend: ''
+    }
+    this.updateNewFriend = this.updateNewFriend.bind(this)
+    this.addNewFriend = this.addNewFriend.bind(this);
+  }
+  updateNewFriend(e) {
+    this.setState({
+      newFriend: e.target.value
+    })
+  }
+  addNewFriend(e) {
+    if(this.state.newFriend === '') return false;
+    this.props.addNew(this.state.newFriend);
+    this.setState({
+      newFriend: ''
+    })
+  }
+  render() {
+    return(
+      <div>
+        <input type='text' value={this.state.newFriend} onChange={this.updateNewFriend} />
+        <button onClick={this.addNewFriend} >Add New Friend </button>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<FriendsContainer />, document.getElementById('root'));
