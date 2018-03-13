@@ -1,0 +1,27 @@
+{
+  "name": "react-practice-twitter",
+  "version": "1.0.0",
+  "description": "This is a practice app build wiith the help of online tutorial(https://tylermcginnis.com/reactjs-tutorial-a-comprehensive-guide-to-building-apps-with-react/) for practice purpose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanmugarajbe/react-practice-friends.git"
+  },
+  "keywords": [
+    "react",
+    "react-dom"
+  ],
+  "author": "Shanmugaraj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shanmugarajbe/react-practice-friends/issues"
+  },
+  "homepage": "https://github.com/shanmugarajbe/react-practice-friends#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
